@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Timer URL</title>
+    <link rel="stylesheet" href="stylesheets/vendor/bootstrap.css"/>
+    <link rel="stylesheet" href="stylesheets/vendor/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="stylesheets/settings.css"/>
+</head>
+<body>
+
+  <div ng-app="app">
+    <div ng-controller="settingsCtrl">
+      <div class="container">
+        <div style="margin: 150px;"></div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div ng-hide="emailStored">
+               <h1>Please enter your timer information here.</h1>
+               <div class="input-group">
+                 <input ng-model="timerEmail" class="form-control" placeholder="Email">
+                 <span class="input-group-btn">
+                   <button class="btn btn-default" ng-click="setToken(timerEmail)">Go!</button>
+                 </span>
+               </div><!-- /input-group -->
+             </div>
+             <div ng-show="emailStored">
+              <h1>You're email is stored</h1>
+              <button class="btn btn-default" ng-click="setToken()">Remove Email</button>
+             </div>
+           </div><!-- /.col-lg-6 -->
+         </div><!-- /.row -->
+      </div><!-- /.container -->
+    </div><!-- /ng-controller -->
+  </div><!-- /ng-app -->
+
+  <script src="../lib/jquery-2.1.1.min.js"></script>
+  <script src="../lib/hashSearch.js"></script>
+  <script src="../lib/angular.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

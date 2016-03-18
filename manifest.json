@@ -7,18 +7,14 @@
     "page" : "background.html",
     "persistent": false
   },
-  "page_action" :
-  {
-    "default_icon": {
-      "19": "icons/19.png",
-      "38": "icons/38.png"
-    }
+  "page_action" : {
+    "default_icon": "icons/19.png"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "http://andre-app.herokuapp.com/visits"
   ],
   "icons": {
-    "16": "icons/16.png",
     "48": "icons/48.png",
     "128": "icons/128.png"
   },

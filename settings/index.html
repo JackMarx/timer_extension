@@ -11,7 +11,7 @@
 <body>
 
   <div ng-app="app">
-    <div ng-controller="settingsCtrl">
+    <div ng-controller="settingsCtrl" ng-init="setup()">
       <div class="container">
         <div style="margin: 150px;"></div>
         <div class="row">
@@ -27,7 +27,7 @@
              </div>
              <div ng-show="emailStored">
               <h1>You're email is stored</h1>
-              <button class="btn btn-default" ng-click="setToken()">Remove Email</button>
+              <button class="btn btn-default" ng-click="setToken(null)">Remove Email</button>
              </div>
            </div><!-- /.col-lg-6 -->
          </div><!-- /.row -->
@@ -36,8 +36,8 @@
   </div><!-- /ng-app -->
 
   <script src="../lib/jquery-2.1.1.min.js"></script>
-  <script src="../lib/hashSearch.js"></script>
   <script src="../lib/angular.js"></script>
+  <script src="../lib/hashSearch.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/settings.js"></script>
 </body>

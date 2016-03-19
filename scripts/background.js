@@ -26,8 +26,15 @@
       chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, function(tabs){
         $.ajax({
           type: 'POST',
+
+          // ********************************************************
+          // change to your api endpoint ************************
           url: "http://andre-app.herokuapp.com/visits",
+
+          // ********************************************************
+          // This is the json that goes to your api *****************
           data:{url: tabs[0].url, time: Date.now(), email: window.localStorage["timer_email"], action: "entered"},
+
           success: function (response) {
             // alert("success");
           }
@@ -35,6 +42,11 @@
       })
     }
   });
+
+    // ********************************************************
+    // Below is to add another marker when a tab is removed you 
+    // will have to complete it using the code above as an example. 
+    // ********************************************************
 
     // chrome.tabs.onRemoved.addListener(function(something){
     //   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},

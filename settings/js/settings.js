@@ -23,6 +23,11 @@
           command: 'saveToken',
           token: localStorage.getItem('timer_email')
         }, function(data) {
+            // ****************************************
+            // if you uncomment the code below it will close 
+            // the options page when you save the token
+            // ****************************************
+
             // chrome.tabs.getCurrent(function (tab) {
             //     chrome.tabs.remove(tab.id);
             // });
@@ -35,6 +40,11 @@
           command: 'deleteToken',
           token: localStorage.getItem('timer_email')
         }, function(data) {
+          // ****************************************
+          // if you uncomment the code below it will close 
+          // the options page when you delete the token
+          // ****************************************
+
           // chrome.tabs.getCurrent(function (tab) {
           //     chrome.tabs.remove(tab.id);
           // });

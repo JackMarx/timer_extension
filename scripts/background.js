@@ -12,15 +12,17 @@
       }
 
       if (request.command == 'deleteToken') {
-          localStorage.setItem('timer_email', null);
+          delete localStorage['timer_email'];
           sendResponse();
           return true;
       }
     }
   );
 
-  if (window.localStorage["timer_email"]){
-    chrome.tabs.onHighlighted.addListener(function(something){
+  alert(localStorage["timer_email"]);
+
+  chrome.tabs.onHighlighted.addListener(function(something){
+    if (localStorage["timer_email"]){
       chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, function(tabs){
         $.ajax({
           type: 'POST',
@@ -31,7 +33,8 @@
           }
         });
       })
-    });
+    }
+  });
 
     // chrome.tabs.onRemoved.addListener(function(something){
     //   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
@@ -41,5 +44,4 @@
     //   )
     // });
 
-  }
 }());

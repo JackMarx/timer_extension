@@ -5,32 +5,41 @@
 
   angular.module("app").controller("settingsCtrl", function($scope){
     $scope.setup = function(){
-      $scope.vault = window.localStorage;
-      $scope.emailStored = false;
+      if (!localStorage["timer_email"]){
+        $scope.emailStored = false;
+      } else {
+        $scope.emailStored = true;
+      }
     };
 
     $scope.setToken = function(email_token) {
       // sets or resets email token
-      null === email_token ? $scope.vault["timer_email"] = null : $scope.vault["timer_email"] = email_token;
-      if (localStorage["timer_email"] !== "undefined" || localStorage["timer_email"])
+      
+      if (email_token){
+        window.localStorage["timer_email"] = email_token;
+        $scope.emailStored = true;
+
         chrome.extension.sendMessage({
           command: 'saveToken',
           token: localStorage.getItem('timer_email')
         }, function(data) {
-          $scope.emailStored = true;
             // chrome.tabs.getCurrent(function (tab) {
             //     chrome.tabs.remove(tab.id);
             // });
           });
-    } else {
-      chrome.extension.sendMessage({
-        command: 'deleteToken',
-        token: localStorage.getItem('timer_email')
-      }, function(data) {
-        $scope.emailStored = true;
-      });
-    // }
+      } else {
+        delete window.localStorage["timer_email"];
+        $scope.emailStored = false;
 
-  };
+        chrome.extension.sendMessage({
+          command: 'deleteToken',
+          token: localStorage.getItem('timer_email')
+        }, function(data) {
+          // chrome.tabs.getCurrent(function (tab) {
+          //     chrome.tabs.remove(tab.id);
+          // });
+        });
+      }
+    };
   });
 }());
